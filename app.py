@@ -23,4 +23,4 @@ def main(wrs, rbs, teams, weekly_scores, last_week_pos):
         st.bar_chart(last_week_pos, stack=False)
 
     st.header('Payout Points by Week', divider=True)
-    st.line_chart(weekly_scores.T.apply(pd.to_numeric, errors='coerce'))
+    st.line_chart(weekly_scores)
