@@ -3,9 +3,12 @@ from espn_api.football import League
 import numpy as np
 import pandas as pd
 
-point_key = {'weekly_leader': 1,
-             'best_rbs': 3,
-             'best_wrs': 3}
+point_key = {'Weekly Leader': 1,
+             'Best Running Back Room EoY': 3,
+             'Best Reciever Room EoY': 3,
+             'League Winner': 15,
+             'Second Place': 5,
+             'Third Place': 3}
 
 def getTables(league, point_key):
     if not hasattr(league, 'points'):
@@ -55,8 +58,8 @@ def getTables(league, point_key):
 
         for ix, team in enumerate(league.teams):
             if team == best_team:
-                team.points.append(point_key['weekly_leader'])
-                weekly_accum_points[wk][ix] += point_key['weekly_leader']
+                team.points.append(point_key['Weekly Leader'])
+                weekly_accum_points[wk][ix] += point_key['Weekly Leader']
             else:
                 team.points.append(0)
                 weekly_accum_points[wk][ix] += 0
@@ -85,4 +88,4 @@ if __name__ == '__main__':
 
     import app
 
-    app.main(wrs, rbs, teams, weekly_scores, lsat_week_pos)
+    app.main(wrs, rbs, teams, weekly_scores, lsat_week_pos, point_key)

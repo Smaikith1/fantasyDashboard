@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(layout='wide')
 
@@ -6,7 +7,7 @@ def init_state(key, value):
     if key not in st.session_state:
         st.session_state[key] = value
 
-def main(wrs, rbs, teams, weekly_scores, last_week_pos):
+def main(wrs, rbs, teams, weekly_scores, last_week_pos, point_key):
     week = weekly_scores.shape
     week = week[0]
     st.title(f'Week {week} Goodell Gobblers Updates')
@@ -23,3 +24,6 @@ def main(wrs, rbs, teams, weekly_scores, last_week_pos):
 
     st.header('Payout Points by Week', divider=True)
     st.line_chart(weekly_scores)
+
+    with st.expander('Points Key'):
+        st.dataframe(pd.Series(point_key))
