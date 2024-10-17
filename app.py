@@ -18,7 +18,7 @@ def main(wrs, rbs, teams, weekly_scores, last_week_pos, point_key):
 
         with col1:
             st.header('Last Weeks Scores', divider=True)
-            st.bar_chart(teams.sort_values(by=teams.columns[-1], ascending=False), horizontal=False)
+            st.bar_chart(teams.iloc[:,-1].sort_values(ascending=False), horizontal=False)
 
         with col2:
             st.header('Last Weeks Positional Player Performance', divider=True)
@@ -30,7 +30,7 @@ def main(wrs, rbs, teams, weekly_scores, last_week_pos, point_key):
 
         with col1:
             st.header('Season Total Scores')
-            st.bar_chart(np.sum(teams, axis=1))
+            st.bar_chart(teams, horizontal=False)
 
         with col2:
             df = pd.concat([np.sum(wrs, axis=1), np.sum(rbs, axis=1)], axis=1)
